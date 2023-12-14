@@ -1,0 +1,5 @@
+entitat1;123456789;entitat1@correu
+entitat2;123456789;entitat2@correu
+entitat3;123456789;entitat3@correu
+entitat4;123456789;entitat4@correu
+entitat5;123456789;entitat5@correu
