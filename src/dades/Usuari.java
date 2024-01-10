@@ -1,10 +1,13 @@
 package dades;
 
-public class Usuari {
+import java.io.Serializable;
 
-    private String alies, correu, codi_postal;
+public class Usuari implements Serializable {
 
-    public Usuari(String alies, String correu, String codi_postal) {
+    private String alies, correu; 
+    private int codi_postal;
+
+    public Usuari(String alies, String correu, int codi_postal) {
         this.alies = alies;
         this.correu = correu;
         this.codi_postal = codi_postal;
@@ -26,11 +29,11 @@ public class Usuari {
         this.correu = correu;
     }
 
-    public String getCodi_postal() {
+    public int getCodi_postal() {
         return codi_postal;
     }
 
-    public void setCodi_postal(String codi_postal) {
+    public void setCodi_postal(int codi_postal) {
         this.codi_postal = codi_postal;
     }
 
@@ -44,7 +47,7 @@ public class Usuari {
 
     @Override
     public String toString() {
-        return "[alies=" + alies + ", correu=" + correu + ", codi_postal=" + codi_postal + "]";
+        return "[alies=" + alies + ", correu=" + correu + ", codi_postal=" + codi_postal + "]\n";
     }
 
     

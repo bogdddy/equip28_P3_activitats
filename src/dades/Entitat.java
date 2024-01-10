@@ -40,7 +40,9 @@ public class Entitat {
 
     @Override
     public String toString() {
-        return "Entitat [nom=" + nom + ", telefon=" + telefon + ", correu=" + correu + "]";
+        return "Entitat [nom=" + nom + ", telefon=" + telefon + ", correu=" + correu + "]\n";
     }
 
 }
+
+

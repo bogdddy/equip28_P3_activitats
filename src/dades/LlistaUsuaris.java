@@ -2,7 +2,8 @@ package dades;
 
 public class LlistaUsuaris {
     
-    private Usuari[] llista;
+    public final static int maxUsuaris = 50;
+    public Usuari[] llista;
     private int numElem;
 
     public LlistaUsuaris(int mida){
@@ -14,20 +15,21 @@ public class LlistaUsuaris {
      * afegir un element a la llista
      * @param usuari element per afegir
      */
-    public void afegirUsuari(Usuari usuari) {
+    public String afegirUsuari(Usuari usuari) {
 
         // aqui no deberia haber prints por eso
         if (numElem>llista.length){
-            System.out.println("La llista està complerta");
+            return "La llista està complerta";
 
-        }else if (!this.repetit(usuari)){
+        } else if (!this.repetit(usuari)) {
             llista[numElem] = usuari.copia();
             numElem++;
-        
-        }else
-            System.out.println("Ja hi ha un element amb aquestes dades");
+            return "S'ha registrat un nou usuari";
 
+        } else
+            return "Ja hi ha un element amb aquestes dades";
     }
+
 
      /**
      * Mètode que comprova si ja hi ha un element amb exactament les mateixes dades
@@ -57,10 +59,10 @@ public class LlistaUsuaris {
     /**
      * Mètode que consulta el contingut d'una posició de la llista
      * @param pos posicio específica que volem consultar (valors > 0)
-     * @return el contingut en un string
+     * @return Usuari
      */
-    public String consultaPoisicio(int pos){
-        return llista[pos-1].toString();
+    public Usuari consultaPoisicio(int pos){
+        return llista[pos-1].copia();
     }
 
     /**
@@ -73,6 +75,30 @@ public class LlistaUsuaris {
             duplicat.afegirUsuari(llista[i]);
         }
         return duplicat;
+    }
+
+    /**
+     * Obté un usuari a partir del seu alias.
+     * Opcio 6
+     * @param alies Alias de l'usuari a buscar.
+     * @return Usuari corresponent a l'alias donat o null si no es troba cap usuari.
+     */
+    public Usuari obtenirUsuariPerAlies(String alies) {
+        for (int i = 0; i < numElem; i++) {
+            if (llista[i].getAlies().equals(alies)) {
+                return llista[i];
+            }
+        }
+        return null;
+    }
+
+    public boolean existeixCorreu(String correu){
+        for (int i = 0; i < numElem; i++) {
+            if (llista[i].getCorreu().equals(correu)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public String toString(){

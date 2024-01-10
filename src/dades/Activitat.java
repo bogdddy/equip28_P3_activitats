@@ -2,17 +2,47 @@ package dades;
 
 public abstract class Activitat {
     
+    protected char tipus;
     protected String entitat, codi, nom_activitat, lloc;
     protected int codi_postal, dia;
     protected static int num_codi = 100;
 
-    public Activitat(String entitat, String nom_activitat, String lloc, int codi_postal, int dia) {
+    public Activitat(char tipus, String entitat, String nom_activitat, String lloc, int codi_postal, int dia) {
+        this.tipus = tipus;
         this.entitat = entitat;
         this.codi = generarCodi(entitat);
         this.nom_activitat = nom_activitat;
         this.lloc = lloc;
         this.codi_postal = codi_postal;
         this.dia = dia;
+    }
+
+    /**
+     * Constructor amb parametre el "codi"
+     * @param tipus
+     * @param entitat
+     * @param codi
+     * @param nom_activitat
+     * @param lloc
+     * @param codi_postal
+     * @param dia
+     */
+    public Activitat(char tipus, String entitat, String codi, String nom_activitat, String lloc, int codi_postal, int dia) {
+        this.tipus = tipus;
+        this.entitat = entitat;
+        this.codi = codi;
+        this.nom_activitat = nom_activitat;
+        this.lloc = lloc;
+        this.codi_postal = codi_postal;
+        this.dia = dia;
+    }
+
+    public char getTipus() {
+        return tipus;
+    }
+
+    public void setTipus(char tipus) {
+        this.tipus = tipus;
     }
 
     public String getEntitat() {
@@ -59,14 +89,19 @@ public abstract class Activitat {
         this.dia = dia;
     }
 
-    private String generarCodi(String e) {
-        String r;
-        
-        r = e.substring(0, 2) + Integer.toString(num_codi);
+    private String generarCodi(String entitat) {
+        String codi = entitat.substring(0, 3) + Integer.toString(num_codi);
         num_codi++;
+        
+        return codi;
+    }
 
-        return r;
-
+    /**
+     * Consultar el tipus de l'activitat
+     * @return string del tpus d'activitat que és
+     */
+    public char tipusActivitat(){
+        return this instanceof Xerrada ? 'x' : this instanceof Visita ? 'v' : 't';
     }
 
     protected abstract Activitat copia();
@@ -79,5 +114,20 @@ public abstract class Activitat {
 
     
 
+    /*Amb aquest mètode equals, dues activitats es consideraran iguals si tenen el mateix codi. 
+    Ara la teva llista verificarà correctament si una activitat ja existeix basant-se en el codi. 
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
 
+        Activitat activitat = (Activitat) obj;
+
+        return codi.equals(activitat.codi);
+    }*/
 }
+

@@ -1,0 +1,2 @@
+user1;user1@correu;43205
+user2;user2@correu;43205

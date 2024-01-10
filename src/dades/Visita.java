@@ -7,7 +7,27 @@ public class Visita extends Activitat {
 
     public Visita(String entitat, String nom_activitat, String lloc, int codi_postal, int dia, String edifici,
             boolean audioguia, boolean per_cecs) {
-        super(entitat, nom_activitat, lloc, codi_postal, dia);
+        super('v', entitat, nom_activitat, lloc, codi_postal, dia);
+        this.edifici = edifici;
+        this.audioguia = audioguia;
+        this.per_cecs = per_cecs;
+    }
+    
+    /**
+     * Constructor amb el parametre "codi"
+     * @param entitat
+     * @param codi
+     * @param nom_activitat
+     * @param lloc
+     * @param codi_postal
+     * @param dia
+     * @param edifici
+     * @param audioguia
+     * @param per_cecs
+     */
+    public Visita(String entitat, String codi, String nom_activitat, String lloc, int codi_postal, int dia, String edifici,
+            boolean audioguia, boolean per_cecs) {
+        super('v', entitat, codi, nom_activitat, lloc, codi_postal, dia);
         this.edifici = edifici;
         this.audioguia = audioguia;
         this.per_cecs = per_cecs;
@@ -21,7 +41,7 @@ public class Visita extends Activitat {
         this.edifici = edifici;
     }
 
-    public boolean isAudioguia() {
+    public boolean getAudioguia() {
         return audioguia;
     }
 
@@ -29,7 +49,7 @@ public class Visita extends Activitat {
         this.audioguia = audioguia;
     }
 
-    public boolean esPer_cecs() {
+    public boolean getPer_cecs() {
         return per_cecs;
     }
 
@@ -38,14 +58,12 @@ public class Visita extends Activitat {
     }
 
     protected Visita copia(){
-        return new Visita(entitat, nom_activitat, lloc, codi_postal, dia, edifici, audioguia, per_cecs);
+        return new Visita(entitat, codi, nom_activitat, lloc, codi_postal, dia, edifici, audioguia, per_cecs);
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", edifici=" + edifici + ", audioguia=" + audioguia + ", per_cecs=" + per_cecs + "]";
+        return super.toString() + ", edifici=" + edifici + ", audioguia=" + audioguia + ", per_cecs=" + per_cecs + "]\n";
     }
 
-    
-    
 }
