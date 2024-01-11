@@ -1,11 +1,18 @@
 package dades;
 
+/**
+ * @author Marius - Ayla
+ */
 public class LlistaUsuaris {
     
     public final static int maxUsuaris = 50;
     public Usuari[] llista;
     private int numElem;
 
+    /**
+     * Constructor LlistaUsuaris
+     * @param mida
+     */
     public LlistaUsuaris(int mida){
         llista = new Usuari[mida];
         numElem=0;
@@ -14,6 +21,7 @@ public class LlistaUsuaris {
     /**
      * afegir un element a la llista
      * @param usuari element per afegir
+     * @return si s'ha afegit o no
      */
     public String afegirUsuari(Usuari usuari) {
 
@@ -47,7 +55,6 @@ public class LlistaUsuaris {
         }
         return repetit;
     }
-
     /**
      * Getter del número d'elements de la llista
      * @return numElem
@@ -61,7 +68,7 @@ public class LlistaUsuaris {
      * @param pos posicio específica que volem consultar (valors > 0)
      * @return Usuari
      */
-    public Usuari consultaPoisicio(int pos){
+    public Usuari consultaPosicio(int pos){
         return llista[pos-1].copia();
     }
 
@@ -92,6 +99,11 @@ public class LlistaUsuaris {
         return null;
     }
 
+    /**
+     * Métode per veure si el correu que s'utilitza ja existeix
+     * @param Correu
+     * @return true or false
+     */
     public boolean existeixCorreu(String correu){
         for (int i = 0; i < numElem; i++) {
             if (llista[i].getCorreu().equals(correu)) {
@@ -101,6 +113,10 @@ public class LlistaUsuaris {
         return false;
     }
 
+    /**
+     * toString
+     * @return aux (toString)
+     */    
     public String toString(){
         String aux = "Llista Usuaris ==>\n";
 

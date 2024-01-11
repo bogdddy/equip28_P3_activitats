@@ -16,6 +16,9 @@ import dades.LlistaReserves;
 import dades.LlistaUsuaris;
 import dades.Taller;
 
+/**
+ * @author Marius - Ayla - Manu - Bogdan
+ */
 public class App {
 
     public static Scanner teclat = new Scanner(System.in);
@@ -39,30 +42,22 @@ public class App {
             e.printStackTrace();
         }
 
-        // TODO delete later
-        /* Missatges de comprobacio de carrega del arxius.txt */
-        System.out.println("\nNum usuaris: " + usuaris.getNumElem());
-        System.out.println("Num entitats: " + entitats.getNumElem());
-        System.out.println("Num activitats: " + activitats.getNumElem());
-        System.out.println("Num reserves: " + reserves.getNumElem());
-        System.out.println("\n");
-
         menu(usuaris, entitats, activitats, reserves);
 
-        // desar dades
+        // desar dades o no
         System.out.println("Desitja desar els canvis? s/n");
         String desar = teclat.nextLine();
         if (desar.equals("s")) {
-            
+
             try {
                 GestorFitxers.desarActivitats(activitats);
                 GestorFitxers.desarUsuaris(usuaris);
-				GestorFitxers.desarReserves(reserves);
+                GestorFitxers.desarReserves(reserves);
                 System.out.println("\nS'han desat els canvis correctament");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-            
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         }
         System.out.println("Gràcies, adeu!");
 
@@ -73,7 +68,7 @@ public class App {
         System.out.println(
                 "1. Mostrar les dades de qualsevol llista que tingueu definida\n" + //
                 "2. Obtenir i mostrar la llista d’activitats que ofereix una entitat concreta\n" + //
-                "3. Obtenir i mostrar la llista de les activitats que es duen a terme en un dia indicat per teclat\n"+ //
+                "3. Obtenir i mostrar la llista de les activitats que es duen a terme en un dia indicat per teclat\n" + //
                 "4. Obtenir i mostrar la llista dels tallers que tenen places disponibles\n" + //
                 "5. Afegir una nova activitat\n" + //
                 "6. Registrar la petició d’un usuari per reservar un taller\n" +
@@ -81,76 +76,81 @@ public class App {
                 "8. Calcular l’usuari que s’ha apuntat a més tallers.\n" + //
                 "9. Registrar la nota que un usuari que s’ha apuntat a un taller li dona un cop s’ha fet.\n" + //
                 "10. Calcular la nota mitja que ha rebut un taller.\n" + //
-                "11. Quin és el taller que ha tingut més èxit? Calcularem l’èxit segons el taller que ha tingut una\r\n"+ //
-                "ocupació més alta en proporció a les places que oferia.\n" + //
-                "12. Obtenir i mostrar les dades de la llista de visites ofertes per una entitat (per teclat s’indicarà si\r\n"+ //
-                "es vol audioguia o si cal que estigui adaptada per persones cegues).\n" + //
+                "11. Quin és el taller que ha tingut més èxit?\n" + //
+                "12. Obtenir i mostrar les dades de la llista de visites ofertes per una entitat\n" + //
                 "13. Mostrar les dades de les xerrades que farà una persona concreta.\n" + //
                 "14. Donar de baixa un taller sempre que no hi hagi usuaris apuntats\n" + //
-                "15. Sortir del programa.\n"
-                );
+                "15. Sortir del programa.\n");
 
-        System.out.println("introdueix el num de l'opcio:");
-        int opcio = Integer.parseInt(teclat.nextLine());
+        int opcio = 0;
 
         while (opcio != 15) {
+            try {
+                System.out.println("\nIntrodueix el num de l'opció:");
+                opcio = Integer.parseInt(teclat.nextLine());
 
-            switch (opcio) {
-                case 1:
-                    opcio1(u, e, a, r);
-                    break;
-                case 2:
-                    opcio2(e, a);
-                    break;
-                case 3:
-                    opcio3(a);
-                    break;
-                case 4:
-                    opcio4(a);
-                    break;
-                case 5:
-                    opcio5(a, e);
-                    break;
-                case 6:
-                    opcio6(u, a, r);
-                    break;
-                case 7:
-                    opcio7(r, u);
-                    break;
-                case 8:
-                    opcio8();
-                    break;
-                case 9:
-                    opcio9(r);
-                    break;
-                case 10:
-                    opcio10(r, a);
-                    break;
-                case 11:
-                    opcio11();
-                    break;
-                case 12:
-                    opcio12();
-                    break;
-                case 13:
-                    opcio13(a);
-                    break;
-                case 14:
-                    opcio14();
-                    break;
+                switch (opcio) {
+                    case 1:
+                        opcio1(u, e, a, r);
+                        break;
+                    case 2:
+                        opcio2(e, a);
+                        break;
+                    case 3:
+                        opcio3(a);
+                        break;
+                    case 4:
+                        opcio4(a);
+                        break;
+                    case 5:
+                        opcio5(a, e);
+                        break;
+                    case 6:
+                        opcio6(u, a, r);
+                        break;
+                    case 7:
+                        opcio7(r, u);
+                        break;
+                    case 8:
+                        opcio8(r);
+                        break;
+                    case 9:
+                        opcio9(r);
+                        break;
+                    case 10:
+                        opcio10(r, a);
+                        break;
+                    case 11:
+                        opcio11(a);
+                        break;
+                    case 12:
+                        opcio12(a);
+                        break;
+                    case 13:
+                        opcio13(a);
+                        break;
+                    case 14:
+                        opcio14(a);
+                        break;
 
-                default:
-                    System.out.println("Numero d'opcio incorrecta");
-                    
+                    default:
+                        System.out.println("Numero d'opcio incorrecta");
+                }
+
+            } catch (NumberFormatException exc) {
+                System.out.println("Error: Has d'introduir un número\n");
             }
-
-            System.out.println("\nintrodueix el num de l'opcio:");
-            opcio = Integer.parseInt(teclat.nextLine());
-
         }
 
     }
 
+    /**
+     * Mètode que mostra la llista desitjada
+     * @param u llista usuaris
+     * @param e llista entitats
+     * @param a llista activitats
+     * @param r llista reserves
+     */
     private static void opcio1(LlistaUsuaris u, LlistaEntitats e, LlistaActivitats a, LlistaReserves r) {
         System.out.println("\nEscull un número:\n1. Usuaris\n2. Activitats\n3. Reserves\n4. Entitats");
         int opcioLlista = Integer.parseInt(teclat.nextLine());
@@ -189,6 +189,11 @@ public class App {
         }
     }
 
+    /**
+     * Mètode que mostra les activitats que fa una entitat concreta
+     * @param e llista entitats
+     * @param a llista activitats
+     */
     private static void opcio2(LlistaEntitats e, LlistaActivitats a) {
 
         System.out.println("Introdueix el nom de l'entitat:");
@@ -205,6 +210,10 @@ public class App {
 
     }
 
+    /**
+     * Mètode que mostra les activitats d'un dia específic
+     * @param activitats llista activitats
+     */
     private static void opcio3(LlistaActivitats activitats) {
         System.out.println("Introdueix el dia per veure les activitats:");
         int dia = Integer.parseInt(teclat.nextLine());
@@ -219,6 +228,10 @@ public class App {
         }
     }
 
+    /**
+     * Mètode que mostra els tallers amb places disponibles
+     * @param activitats llista activitats
+     */
     private static void opcio4(LlistaActivitats activitats) {
         LlistaActivitats tallersAmbPlacesDisponibles = activitats.obtenirLlistaTallersAmbPlacesDisponibles();
 
@@ -230,7 +243,11 @@ public class App {
         }
     }
 
-    //Hay que arreglarlo
+    /**
+     * Mètode que permet crear una nova activitat
+     * @param activitats llista activitats
+     * @param entitats llista entitats
+     */
     private static void opcio5(LlistaActivitats activitats, LlistaEntitats entitats) {
         System.out.println("Introdueix les dades de la nova activitat:");
 
@@ -246,6 +263,11 @@ public class App {
 
         System.out.println("Nom de l'activitat:");
         String nomActivitat = teclat.nextLine();
+
+        if (activitats.repetit(nomActivitat)) {
+            System.out.println("Ja es fa aquesta activitat");
+            return;
+        }
 
         System.out.println("Lloc de l'activitat:");
         String lloc = teclat.nextLine();
@@ -269,7 +291,8 @@ public class App {
                 boolean adaptada = Boolean.parseBoolean(teclat.nextLine());
 
                 activitats.afegirActivitat(
-                        new Visita(entitat, nomActivitat, lloc, codiPostal, dia, dataVisita, audioguia, adaptada));
+                        new Visita(entitat, null, nomActivitat, lloc, codiPostal, dia, dataVisita, audioguia,
+                                adaptada));
                 break;
 
             case 't':
@@ -280,7 +303,7 @@ public class App {
                 System.out.println("Capacitat del taller:");
                 int capacitatTaller = Integer.parseInt(teclat.nextLine());
 
-                activitats.afegirActivitat(new Taller(entitat, nomActivitat, lloc, codiPostal, dia, horaTaller,
+                activitats.afegirActivitat(new Taller(entitat, null, nomActivitat, lloc, codiPostal, dia, horaTaller,
                         duradaTaller, capacitatTaller, 0, 0, capacitatTaller));
                 break;
 
@@ -288,7 +311,8 @@ public class App {
                 System.out.println("Responsable de la xerrada (nom):");
                 String responsableXerrada = teclat.nextLine();
 
-                activitats.afegirActivitat(new Xerrada(entitat, nomActivitat, lloc, codiPostal, dia, responsableXerrada));
+                activitats.afegirActivitat(
+                        new Xerrada(entitat, null, nomActivitat, lloc, codiPostal, dia, responsableXerrada));
                 break;
 
             default:
@@ -296,11 +320,15 @@ public class App {
                 break;
         }
 
-        // Hay que comprovar si ya existe esa actividad
-
         System.out.println("Nova activitat afegida amb èxit:\n" + activitats.consultaPoisicio(activitats.getNumElem()));
     }
 
+    /**
+     * Mètode que permet a l'usuari fer una reserva si hi ha places disponibles
+     * @param usuaris llista usuaris
+     * @param activitats llista activitats
+     * @param reserves llista reserves
+     */
     private static void opcio6(LlistaUsuaris usuaris, LlistaActivitats activitats, LlistaReserves reserves) {
 
         // Mostrar la llista de tallers disponibles perquè l'usuari en seleccioni un
@@ -332,10 +360,11 @@ public class App {
             Usuari usuari = usuaris.obtenirUsuariPerAlies(aliesUsuari);
             int intents = 0;
 
-            // Para que no pueda ser un bucle infinito damos 3 intentos para que se intente registrar un nuevo usuario
+            // Para que no pueda ser un bucle infinito damos 3 intentos para que se intente
+            // registrar un nuevo usuario
             while (usuari == null && intents < 3) {
-                System.out.println("\n'"+aliesUsuari+"': No s'ha trobat cap usuari amb aquest alies." +
-                                    "\nVols registrar un nou usuari? s/n");
+                System.out.println("\n'" + aliesUsuari + "': No s'ha trobat cap usuari amb aquest alies." +
+                        "\nVols registrar un nou usuari? s/n");
                 String registrar = teclat.nextLine();
                 if (registrar.equals("n")) {
                     return;
@@ -344,15 +373,17 @@ public class App {
                 usuari = usuaris.obtenirUsuariPerAlies(aliesUsuari);
                 intents++; // incrementamos los intentos
             }
-            if (usuari == null){ // si sale del bucle y sigue sin existir el usuario sale de la opción
+            if (usuari == null) { // si sale del bucle y sigue sin existir el usuario sale de la opción
                 System.out.println("\nIntenta-ho de nou més tard\n");
                 return;
             }
 
-            // Hay que comprovar si ese mismo usuario ya ha hecho una reserva para ese mismo taller
-            // El codigo de reserva es el usuario+numero del taller, así que es facil comprovarlo con solo eso
+            // Si l'usuari ja ha fet aquesta reserva no es fa la petició
+            if (reserves.existeixReserva(usuari, codiTaller)) {
+                System.out.println("Aquest usuari ja ha fet una reserva per aquest taller");
+                return;
+            }
 
-            // Todos los datos están en orden:
             // Crear una nova reserva
             Reserva reserva = new Reserva(usuari, codiTaller);
 
@@ -370,25 +401,34 @@ public class App {
         }
     }
 
+    /**
+     * Mètode per registrar un nou usuari
+     * @param u llista usuaris
+     */
     private static void registrarNouUsuari(LlistaUsuaris u) {
 
         System.out.println("Introdueix un alies d'usuari:");
         String alies = teclat.nextLine();
 
-        if (u.obtenirUsuariPerAlies(alies)==null){
+        if (u.obtenirUsuariPerAlies(alies) == null) {
             System.out.println("Introdueix el correu electronic:");
             String correu = teclat.nextLine();
 
-            if (!u.existeixCorreu(correu)){
+            if (!u.existeixCorreu(correu)) {
                 System.out.println("Introdueix el codi postal del teu domicili:");
                 int codiPostal = Integer.parseInt(teclat.nextLine());
                 System.out.println(u.afegirUsuari(new Usuari(alies, correu, codiPostal)));
                 return;
             }
-        } 
+        }
         System.out.println("Ja existeix aquest alies/correu a la llista d'usuaris");
     }
 
+    /**
+     * Mètode que mostra els usuaris que s'han apuntat a un taller
+     * @param reserves llista reserves
+     * @param usuaris llista usuaris
+     */
     private static void opcio7(LlistaReserves reserves, LlistaUsuaris usuaris) {
 
         System.out.println("Introdueix el codi del taller per veure els usuaris apuntats:");
@@ -399,9 +439,19 @@ public class App {
 
     }
 
-    private static void opcio8() {
+    /**
+     * Mètode que calcula quin usuari s'ha apuntat a més tallers
+     * @param r llista reserves
+     */
+    private static void opcio8(LlistaReserves r) {
+        String resultat = r.calcularUsuariMesTallers();
+        System.out.println(resultat);
     }
 
+    /**
+     * Mètode que resgistra la nota del usuari per un taller
+     * @param reserves llista reserves
+     */
     private static void opcio9(LlistaReserves reserves) {
         System.out.println("Introdueix el codi de la reserva per a la qual vols registrar la nota:");
         String codiReserva = teclat.nextLine();
@@ -428,6 +478,11 @@ public class App {
         }
     }
 
+    /**
+     * Mètode que calcula la nota mitja d'un taller
+     * @param reserves llista reserves
+     * @param activitats llista activitats
+     */
     private static void opcio10(LlistaReserves reserves, LlistaActivitats activitats) {
         System.out.println("Introdueix el codi del taller per calcular la nota mitja:");
         String codiTaller = teclat.nextLine();
@@ -449,12 +504,28 @@ public class App {
         }
     }
 
-    private static void opcio11() {
+    /**
+     * Mètode que indica quin ha sigut el taller amb més exit segons l'ocupació
+     * @param a llista activitats
+     */
+    private static void opcio11(LlistaActivitats a) {
+        System.out.println(a.obtenirTallerMesExit());
     }
 
-    private static void opcio12() {
+    /**
+     * Mètode que mostra les activitats del tipus visita que fa una entitat concreta
+     * @param a llista activitats
+     */
+    private static void opcio12(LlistaActivitats a) {
+        System.out.print("Introdueix el nom de l'entitat: ");
+        String entitat = teclat.nextLine();
+        System.out.println(a.obtenirIDadesLlistaVisitesPerEntitat(entitat));
     }
 
+    /**
+     * Mètode que mostra les xerrades que fa una persona concreta
+     * @param activitats llista activitats
+     */
     private static void opcio13(LlistaActivitats activitats) {
         System.out.println("Introdueix el nom de la persona:");
         String nomPersona = teclat.nextLine();
@@ -470,7 +541,14 @@ public class App {
         }
     }
 
-    private static void opcio14() {
+    /**
+     * Mètode que permet donar de baixa un taller
+     * @param a llista activitats
+     */
+    private static void opcio14(LlistaActivitats a) {
+        System.out.println("Introdueix el codi del taller a donar de baixa:");
+        String codiTaller = teclat.nextLine();
+        System.out.println(a.donarDeBaixaTaller(codiTaller));
     }
 
 }

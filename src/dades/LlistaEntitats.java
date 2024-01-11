@@ -1,11 +1,18 @@
 package dades;
 
+/**
+ * @author Marius
+ */
 public class LlistaEntitats {
     
     public final static int maxEntitats = 50;
     private Entitat[] llista;
     private int numElem;
 
+    /**
+     * Constructor LlistaEntitats
+     * @param mida
+     */
     public LlistaEntitats(int mida){
         llista = new Entitat[mida];
         numElem=0;
@@ -14,6 +21,7 @@ public class LlistaEntitats {
     /**
      * Afegir un element a la llista
      * @param entitat Element per afegir
+     * @return si s'ha afegit o no
      */
     public String afegirEntitat(Entitat entitat) {
 
@@ -91,6 +99,10 @@ public class LlistaEntitats {
         return null; // Si no se encuentra la entidad con el nombre dado
     }
 
+    /**
+     * toString
+     * @return aux (toString)
+     */
     @Override
     public String toString(){
         String aux = "Llista Entitats ==>\n";

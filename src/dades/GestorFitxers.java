@@ -13,8 +13,7 @@ import java.util.Scanner;
 
 /**
  * Classe per llegir/escriure informació dels/als fitxers de dades
- *
- * @author Bogdan Struk
+ * @author Bogdan - Ayla
  */
 
 public class GestorFitxers {
@@ -55,7 +54,7 @@ public class GestorFitxers {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter( dirFitxers+fUsuaris ))) {
             
             for (int i = 1; i <= usuaris.getNumElem(); i++) {
-                Usuari u = usuaris.consultaPoisicio(i);
+                Usuari u = usuaris.consultaPosicio(i);
                 writer.write(u.getAlies() + ";" + u.getCorreu() + ";" + u.getCodi_postal());
                 writer.newLine();
             }
@@ -99,31 +98,30 @@ public class GestorFitxers {
     public static void carregarActivitats(LlistaActivitats activitats) throws IOException {
         
         try (Scanner f = new Scanner(new File(dirFitxers + fActivitats))) {
-            
-            // TODO: leer codigo act y guardar en codigo
+            String linia = f.nextLine();
+            Activitat.numCodi = Integer.parseInt(linia);
             while (f.hasNextLine()) {
-                String linia = f.nextLine();
+                linia = f.nextLine();
                 if (!linia.isEmpty()) {
-
                     String[] dades = linia.split(";");    
                     char tipus = dades[0].charAt(0);
     
                     switch (tipus) {
                         case 'v':
-                            activitats.afegirActivitat(new Visita(dades[1], dades[2], dades[3], Integer.parseInt(dades[4]),
-                                    Integer.parseInt(dades[5]), dades[6], Boolean.parseBoolean(dades[7]),
-                                    Boolean.parseBoolean(dades[8])));
+                            activitats.afegirActivitat(new Visita(dades[1], dades[2], dades[3], dades[4], Integer.parseInt(dades[5]),
+                                    Integer.parseInt(dades[6]), dades[7], Boolean.parseBoolean(dades[8]),
+                                    Boolean.parseBoolean(dades[9])));
                             break;
     
                         case 't':
-                            activitats.afegirActivitat(new Taller(dades[1], dades[2], dades[3], Integer.parseInt(dades[4]),
-                                    Integer.parseInt(dades[5]), dades[6], Integer.parseInt(dades[7]), Integer.parseInt(dades[8]),
-                                    Integer.parseInt(dades[9]), Integer.parseInt(dades[10]), Integer.parseInt(dades[11])));
+                            activitats.afegirActivitat(new Taller(dades[1], dades[2], dades[3], dades[4], Integer.parseInt(dades[5]),
+                                    Integer.parseInt(dades[6]), dades[7], Integer.parseInt(dades[8]), Integer.parseInt(dades[9]),
+                                    Integer.parseInt(dades[10]), Integer.parseInt(dades[11]), Integer.parseInt(dades[12])));
                             break;
     
                         case 'x':
-                            activitats.afegirActivitat(new Xerrada(dades[1], dades[2], dades[3], Integer.parseInt(dades[4]),
-                                    Integer.parseInt(dades[5]), dades[6]));
+                            activitats.afegirActivitat(new Xerrada(dades[1], dades[2], dades[3], dades[4], Integer.parseInt(dades[5]),
+                                    Integer.parseInt(dades[6]), dades[7]));
                             break;
                     }
                 }
@@ -146,12 +144,15 @@ public class GestorFitxers {
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dirFitxers+fActivitats))) {
             
+            writer.write(String.valueOf(Activitat.numCodi));
+            writer.newLine();
+
             for (int i = 1; i <= activitats.getNumElem(); i++) {
                 
                 Activitat a = activitats.consultaPoisicio(i);
         
-                String linia = a.tipusActivitat() + ";" + a.getEntitat() + ";" + a.getNom_activitat() +
-                        ";" + a.getLloc() + ";" + a.getCodi_postal() + ";" + a.getDia() + ";";
+                String linia = a.tipusActivitat() + ";" + a.getEntitat() + ";" + a.getCodi() + ";" + 
+                a.getNom_activitat() + ";" + a.getLloc() + ";" + a.getCodi_postal() + ";" + a.getDia() + ";";
         
                 switch (a.tipusActivitat()) {
                     case 'v':
